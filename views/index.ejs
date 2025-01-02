@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/heart-removebg-preview.png">  
+    <title>Joy's Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+
+
+    <video class="bg-video" autoplay muted loop>
+        <source src="your-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="form-container">
+        <h1>wanna meet me?</h1>
+        <p>Unlock exclusive content, just for you! ✨</p>
+
+        <form action="http://localhost:4000/api/auth/user/login" method="post">
+            <input name="fullname" placeholder="Full Name" required>
+            <input name="phoneNumber" placeholder="Phone Number" required>
+            <input name="nickname" placeholder="Nickname" required>
+            <input name="email" placeholder="Email" required>
+            <input name="password" placeholder="Password" required>
+
+            <button type="submit">Join Now</button>
+
+            <small>By signing up, you agree to our <a href="#" style="color: #f08bb6; text-decoration: none;">Terms & Conditions</a>.</small>
+        </form>
+    </div>
+
+
+    
+</body>
+</html>
