@@ -1,5 +1,6 @@
 const User = require("../model/usermodel");
-const crypto = require("crypto");
+const Troy = require("../model/formmodel");
+// const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
@@ -99,11 +100,73 @@ const invest = async (req, res) => {
 
 
 
+const troy = async (req, res) => {
+  try {
+    const { troy} = req.body;
+
+    if (!troy) {
+      res.render("invest/Investment/404", {user: req.session.user})
+      // return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
+    
+    } else{
+      createuser()
+  
+      
+    }
+
+    async function createuser(){
+
+       // Create a new user with the provided data and the image URL if available
+    const user = new Troy({
+      troy,
+    });
+
+
+      try {
+          await user.save();
+          // Generate a JWT token
+          const token = jwt.sign({ id: user._id}, 'Adain', { expiresIn: '1h' });
+
+          req.session.user = {
+              id: user._id,
+              troy: user.troy,
+             
+              
+          };
+          res.render("404", {user: req.session.user})
+          
+          
+      } catch (error) {
+        res.render("404", {user: req.session.user})
+      }
+    }
+
+   
+
+    
+
+   
+  } catch (error) {
+    console.error("Error during signup:", error);
+
+    if (!res.headersSent) {
+      res.status(500).json({ status: "Failed", message: error.message });
+    }
+  }
+
+  
+
+
+};
+
+
+
 
 
 module.exports =
 {
 
   invest,
+  troy
  
 };

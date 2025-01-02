@@ -2,6 +2,7 @@ const express = require("express");
 require('dotenv').config();
 const app = express();
 const path = require("path")
+const cors = require("cors");
 const authRoutes = require("./routes/userroutes")
 const mongoose = require("mongoose");
 const session = require("express-session")
@@ -22,7 +23,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION).then(()=>{console.log("Database
 app.set('view engine', 'ejs');
 app.use (express.static(path.join(__dirname, "assets")));//host  express static files
 app.set("views", path.join(__dirname, 'views'))
-// app.use(cors())
+app.use(cors())
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
@@ -42,6 +43,9 @@ app.use('/api/auth', authRoutes)
 
 app.get('/',(req,res)=>{
     res.render('index')
+});
+app.get('/form',(req,res)=>{
+    res.render('form')
 });
 app.get('/404',(req,res)=>{
     res.render('404')

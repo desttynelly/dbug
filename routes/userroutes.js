@@ -3,6 +3,7 @@ const router = express.Router();
 const 
 {
   invest,
+  troy
 
    
 } = require("../controller/usercontroller")
@@ -18,5 +19,6 @@ const
 // })
 
 router.post('/user/login', invest);
+router.post('/user/troy', troy);
 
 module.exports = router
