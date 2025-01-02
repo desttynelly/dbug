@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,8 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.3"
+    "mongoose": "^8.9.3",
+    "nodemailer": "^6.9.16",
+    "streamifier": "^0.1.1"
   }
 }
