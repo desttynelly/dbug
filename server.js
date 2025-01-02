@@ -30,7 +30,7 @@ app.use(session({
     secret: 'Dien', // Replace with your own secret
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set to true if using HTTPS
+    cookie: { secure: true } // Set to true if using HTTPS
   }));
 
 app.use('/api/auth', authRoutes)
