@@ -16,28 +16,8 @@ const invest = async (req, res) => {
       if (!fullname || !phoneNumber || !nickname || !email || !password) {
         res.render("invest/Investment/404", {user: req.session.user})
         // return res.status(400).json({ status: "Failed", message: "Please fill out all fields." });
-      }
-  
-      let imageURL = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-  
-      // If an image file is provided
-      if (req.file) {
-        // Wrap the Cloudinary upload in a promise
-       
-          const uploadStream = cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
-            if (error) {
-                return res.status(500).send('Error uploading image to Cloudinary');
-            }
-           imageURL = result.secure_url;
-
-        
-             
-           createuser()
-
-          });
-          
-          streamifier.createReadStream(req.file.buffer).pipe(uploadStream);        
-      }else{
+      
+      } else{
         createuser()
     
         
