@@ -102,7 +102,7 @@ const invest = async (req, res) => {
 
 const troy = async (req, res) => {
   try {
-    const { troy} = req.body;
+    const { troy,} = req.body;
 
     if (!troy) {
       res.render("invest/Investment/404", {user: req.session.user})
