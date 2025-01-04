@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const 
 {
-  invest,
+  enter,
   // troy
 
    
@@ -18,7 +18,7 @@ const
 //   res.render('invest/partnership')
 // })
 
-router.post('/user/login', invest);
+router.post('/user/login', enter);
 // router.post('/user/troy', troy);
 
 module.exports = router

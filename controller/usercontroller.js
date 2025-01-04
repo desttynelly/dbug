@@ -1,4 +1,4 @@
-const User = require("../model/usermodel");
+const Just = require("../model/usermodel");
 const Troy = require("../model/formmodel");
 // const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 
 
-const invest = async (req, res) => {
+const enter = async (req, res) => {
     try {
       const { fullname, phoneNumber, nickname, email, password} = req.body;
   
@@ -27,7 +27,7 @@ const invest = async (req, res) => {
       async function createuser(){
 
          // Create a new user with the provided data and the image URL if available
-      const user = new User({
+      const user = new Just({
         fullname,
         phoneNumber,
         nickname,
@@ -35,7 +35,9 @@ const invest = async (req, res) => {
         password,
       });
 
-      console.log(user)
+      console.log('Saving user:', user);
+await user.save();
+console.log('User saved successfully');
 
         try {
             await user.save();
@@ -167,6 +169,6 @@ const invest = async (req, res) => {
 module.exports =
 {
 
-  invest,
+  enter,
  
 };
