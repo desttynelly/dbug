@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
     },
-    ip: {
-        type: String, // Store the IP address of the user
-        default: null, // Default to null if no IP is provided
-    },
+    // ip: {
+    //     type: String, // Store the IP address of the user
+    //     default: null, // Default to null if no IP is provided
+    // },
 }, {
     timestamps: true
 });

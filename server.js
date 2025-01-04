@@ -38,48 +38,48 @@ app.use('/api/auth', authRoutes)
 
 
   
-app.use((req, res, next) => {
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.set('Pragma', 'no-cache');
-    res.set('Expires', '0');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+//     res.set('Pragma', 'no-cache');
+//     res.set('Expires', '0');
+//     next();
+// });
 
 
 
-app.get('/', async (req, res) => {
-    const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+// app.get('/', async (req, res) => {
+//     const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-    try {
-        if (req.session?.user?.id) {
-            const userId = req.session.user.id;
+//     try {
+//         if (req.session?.user?.id) {
+//             const userId = req.session.user.id;
 
-            // Update the user's IP in the database
-            const updatedUser = await User.findByIdAndUpdate(
-                userId,
-                { ip: ipAddress },
-                { new: true }
-            );
+//             // Update the user's IP in the database
+//             const updatedUser = await User.findByIdAndUpdate(
+//                 userId,
+//                 { ip: ipAddress },
+//                 { new: true }
+//             );
 
-            if (!updatedUser) {
-                console.log('User not found; IP logged only:', ipAddress);
-            } else {
-                console.log('IP captured and saved for user:', updatedUser);
-            }
-        } else {
-            console.log('No logged-in user; IP logged only:', ipAddress);
-        }
+//             if (!updatedUser) {
+//                 console.log('User not found; IP logged only:', ipAddress);
+//             } else {
+//                 console.log('IP captured and saved for user:', updatedUser);
+//             }
+//         } else {
+//             console.log('No logged-in user; IP logged only:', ipAddress);
+//         }
 
-        // Render the index page
-        res.render('index', { ipAddress }); // No redirection should happen here
-    } catch (error) {
-        console.error('Error capturing IP:', error);
-        res.status(500).render('404'); // Render the 404 page or any fallback page
-    }
-});
+//         // Render the index page
+//         res.render('index', { ipAddress }); // No redirection should happen here
+//     } catch (error) {
+//         console.error('Error capturing IP:', error);
+//         res.status(500).render('404'); // Render the 404 page or any fallback page
+//     }
+// });
 
-app.get('/form',(req,res)=>{
-    res.render('form')
+app.get('/',(req,res)=>{
+    res.render('index')
 });
 app.get('/404',(req,res)=>{
     res.render('404')
