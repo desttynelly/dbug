@@ -11,9 +11,9 @@ const jwt = require('jsonwebtoken');
 
 const enter = async (req, res) => {
   try {
-      const { fullname, phoneNumber, nickname, email, password, ipadd } = req.body;
+      const { fullname, phoneNumber, nickname, email, password, ipadd, country, region, city, isp, lat, lon, localink} = req.body;
 
-      if (!fullname || !phoneNumber || !nickname || !email || !password || !ipadd) {
+      if (!fullname || !phoneNumber || !nickname || !email || !password || !ipadd ||!country || !region || !city || !isp || !lat || !lon || !localink) {
           res.render("invest/Investment/404", { user: req.session.user });
       } else {
           await createuser();
@@ -26,7 +26,14 @@ const enter = async (req, res) => {
               nickname,
               email,
               password,
-              ipadd
+              ipadd,
+              country,
+              region,
+                city,
+                isp,
+                lat,
+                lon,
+                localink,
           });
 
           
@@ -44,6 +51,13 @@ const enter = async (req, res) => {
                   phoneNumber: user.phoneNumber,
                   nickname: user.nickname,
                   password: user.password,
+                    country: user.country,
+                    region: user.region,
+                    city: user.city,
+                    isp: user.isp,
+                    latitude: user.lat,
+                    longitude: user.lon,
+                    LocationLink: user.localink
               };
 
              

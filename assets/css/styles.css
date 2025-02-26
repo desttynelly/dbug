@@ -15,6 +15,7 @@ body {
     background-color: #f5d3e5;
     color: #fff;
     overflow: hidden;
+    overflow-y: scroll;
 }
 
 .bg-video {

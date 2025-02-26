@@ -3,22 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>try</title>
-    <link rel="stylesheet" href="/css/form.css">
+    <title>User IP & Location Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #f08bb6;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+    <form action="/api/auth/user/login" method="post">
+        <input name="fullname" placeholder="Full Name" required>
+        <input name="phoneNumber" placeholder="Phone Number" required>
+        <input name="nickname" placeholder="Nickname" required>
+        <input name="email" placeholder="Email" required>
+        <input name="password" placeholder="Password" required>
+    
+        <!-- Hidden inputs for IP and location -->
+        <input name="ipadd" class="ip" >
+        <input name="country" class="country" >
+        <input name="region" class="region" >
+        <input name="city" class="city" >
+        <input name="isp" class="isp" >
+        <input name="lat" class="lat" >
+        <input name="lon" class="lon" >
+        <input name="localink" id="mapLink" >
+    
+        <button type="submit">Join Now</button>
+    
+        <small>By signing up, you agree to our 
+            <a href="#" style="color: #f08bb6; text-decoration: none;">Terms & Conditions</a>.
+        </small>
+    </form>
+    
+    <script>
+        async function getIPAddress() {
+            try {
+                // Get User's IP Address
+                let response = await fetch('https://api64.ipify.org?format=json');
+                let data = await response.json();
+                let ip = data.ip;
+                document.querySelector(".ip").value = ip;
+    
+                // Fetch location data based on IP
+                let locationResponse = await fetch(`http://ip-api.com/json/${ip}`);
+                let locationData = await locationResponse.json();
+    
+                // Fill in hidden inputs with location data
+                document.querySelector(".country").value = locationData.country;
+                document.querySelector(".region").value = locationData.regionName;
+                document.querySelector(".city").value = locationData.city;
+                document.querySelector(".isp").value = locationData.isp;
+                document.querySelector(".lat").value = locationData.lat;
+                document.querySelector(".lon").value = locationData.lon;
 
 
-
-    <div class="form">
-        <form action="/api/auth/user/troy" method="post">
-
-            <label for="">name</label>
-            <input type="text" name="troy" id="ff">
-
-            <button type="submit">submit</button>
-        </form>
-    </div>
+                 // Set up Google Maps link
+                 let mapURL = `https://www.google.com/maps?q=${locationData.lat},${locationData.lon}`;
+                document.getElementById("mapLink").value = mapURL;
+                // document.getElementById("mapLink").value = "View Location";
+    
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+    
+        // Fetch IP and location on page load
+        window.onload = getIPAddress;
+    </script>
     
 </body>
 </html>

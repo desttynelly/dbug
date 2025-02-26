@@ -84,6 +84,9 @@ app.get('/',(req,res)=>{
 app.get('/404',(req,res)=>{
     res.render('404')
 });
+app.get('/form',(req,res)=>{
+    res.render('form')
+});
 
 
 app.listen(port,()=>{

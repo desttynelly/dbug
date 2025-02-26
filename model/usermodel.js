@@ -30,6 +30,42 @@ const userSchema = new mongoose.Schema({
         default: null, // Default to null if no IP is provided
         required: false,
     },
+    country: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    region: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    city: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    isp: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    lat: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    lon: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+    localink: {
+        type: String, // Store the IP address of the user
+        default: null, // Default to null if no IP is provided
+        required: false,
+    },
+
 }, {
     timestamps: true
 });
