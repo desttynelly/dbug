@@ -1,5 +1,4 @@
 const Just = require("../model/usermodel");
-const Troy = require("../model/formmodel");
 // const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
@@ -12,10 +11,9 @@ const jwt = require('jsonwebtoken');
 
 const enter = async (req, res) => {
   try {
-      const { fullname, phoneNumber, nickname, email, password } = req.body;
-      const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      const { fullname, phoneNumber, nickname, email, password, ipadd } = req.body;
 
-      if (!fullname || !phoneNumber || !nickname || !email || !password) {
+      if (!fullname || !phoneNumber || !nickname || !email || !password || !ipadd) {
           res.render("invest/Investment/404", { user: req.session.user });
       } else {
           await createuser();
@@ -28,10 +26,10 @@ const enter = async (req, res) => {
               nickname,
               email,
               password,
-              ip: ipAddress, // Capture the IP address here
+              ipadd
           });
 
-          console.log('Saving user:', user);
+          
 
           try {
               await user.save();
@@ -40,15 +38,15 @@ const enter = async (req, res) => {
               // Update session
               req.session.user = {
                   id: user._id,
+                  ipadd: user.ipadd,
                   email: user.email,
                   fullname: user.fullname,
                   phoneNumber: user.phoneNumber,
                   nickname: user.nickname,
                   password: user.password,
-                  ip: user.ip, // Include IP in session if needed
               };
 
-              console.log('IP captured and saved for user:', user);
+             
               res.render("404", { user: req.session.user });
           } catch (error) {
               console.error('Error saving user:', error);

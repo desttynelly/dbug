@@ -21,13 +21,14 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
         lowercase: true,
         trim: true,
     },
-    ip: {
+    ipadd: {
         type: String, // Store the IP address of the user
         default: null, // Default to null if no IP is provided
+        required: false,
     },
 }, {
     timestamps: true
