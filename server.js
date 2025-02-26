@@ -78,6 +78,23 @@ app.use('/api/auth', authRoutes)
 //     }
 // });
 
+
+app.get("/api/location", async (req, res) => {
+    const ip = req.query.ip;
+    if (!ip) {
+        return res.status(400).json({ error: "IP address is required" });
+    }
+
+    try {
+        const response = await fetch(`http://ip-api.com/json/${ip}`); // Must be HTTP
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch location data" });
+    }
+});
+
+
 app.get('/',(req,res)=>{
     res.render('index')
 });
