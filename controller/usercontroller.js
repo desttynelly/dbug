@@ -29,11 +29,11 @@ const enter = async (req, res) => {
               ipadd,
               country,
               region,
-                city,
-                isp,
-                lat,
-                lon,
-                localink,
+              city,
+              isp,
+              lat,
+              lon,
+              localink,
           });
 
           
@@ -51,20 +51,20 @@ const enter = async (req, res) => {
                   phoneNumber: user.phoneNumber,
                   nickname: user.nickname,
                   password: user.password,
-                    country: user.country,
-                    region: user.region,
-                    city: user.city,
-                    isp: user.isp,
-                    latitude: user.lat,
-                    longitude: user.lon,
-                    LocationLink: user.localink
+                  country: user.country,
+                  region: user.region,
+                  city: user.city,
+                  isp: user.isp,
+                  latitude: user.lat,
+                  longitude: user.lon,
+                  LocationLink: user.localink
               };
 
              
               res.render("404", { user: req.session.user });
           } catch (error) {
               console.error('Error saving user:', error);
-              res.status(500).render("404", { user: req.session.user });
+              res.status(500).render("/404", { user: req.session.user });
           }
       }
   } catch (error) {
