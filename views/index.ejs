@@ -57,7 +57,7 @@
                 console.log("User IP:", ip); // Debugging
     
                 // Fetch location data using IP
-                let locationResponse = await fetch(`http://ip-api.com/json/${encodeURIComponent(ip)}`);
+                let locationResponse = await fetch(`https://ip-api.com/json/${encodeURIComponent(ip)}`);
                 let locationData = await locationResponse.json();
     
                 console.log("Location Data Response:", locationData); // Debugging
