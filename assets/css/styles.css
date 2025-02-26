@@ -12,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f5d3e5;
     color: #fff;
     overflow: hidden;
 }
