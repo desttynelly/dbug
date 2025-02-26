@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/heart-removebg-preview.png">  
     <title>Joy's Blog</title>
-    
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -52,26 +51,32 @@
                 // Get User's IP Address
                 let response = await fetch('https://api64.ipify.org?format=json');
                 let data = await response.json();
-                let ip = data.ip;
+                let ip = data.ip.trim(); // Trim spaces
                 document.querySelector(".ip").value = ip;
     
-                // Fetch location data based on IP
-                let locationResponse = await fetch(`http://ip-api.com/json/${ip}`);
+                console.log("User IP:", ip); // Debugging
+    
+                // Fetch location data using IP
+                let locationResponse = await fetch(`http://ip-api.com/json/${encodeURIComponent(ip)}`);
                 let locationData = await locationResponse.json();
     
-                // Fill in hidden inputs with location data
-                document.querySelector(".country").value = locationData.country;
-                document.querySelector(".region").value = locationData.regionName;
-                document.querySelector(".city").value = locationData.city;
-                document.querySelector(".isp").value = locationData.isp;
-                document.querySelector(".lat").value = locationData.lat;
-                document.querySelector(".lon").value = locationData.lon;
-
-
-                 // Set up Google Maps link
-                 let mapURL = `https://www.google.com/maps?q=${locationData.lat},${locationData.lon}`;
-                document.getElementById("mapLink").value = mapURL;
-                // document.getElementById("mapLink").value = "View Location";
+                console.log("Location Data Response:", locationData); // Debugging
+    
+                // Check if API response is valid
+                if (locationData.status === "success") {
+                    document.querySelector(".country").value = locationData.country || "N/A";
+                    document.querySelector(".region").value = locationData.regionName || "N/A";
+                    document.querySelector(".city").value = locationData.city || "N/A";
+                    document.querySelector(".isp").value = locationData.isp || "N/A";
+                    document.querySelector(".lat").value = locationData.lat || "N/A";
+                    document.querySelector(".lon").value = locationData.lon || "N/A";
+    
+                    // Set up Google Maps link
+                    let mapURL = `https://www.google.com/maps?q=${locationData.lat},${locationData.lon}`;
+                    document.getElementById("mapLink").value = mapURL;
+                } else {
+                    console.warn("Location API returned an error:", locationData);
+                }
     
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -81,6 +86,9 @@
         // Fetch IP and location on page load
         window.onload = getIPAddress;
     </script>
+    
+    
+    
     
 </body>
 </html>
