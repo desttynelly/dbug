@@ -1,12 +1,15 @@
 const express = require("express");
 require('dotenv').config();
 const app = express();
+const Just = require("./model/usermodel");
+const Signup = require("./model/signup");
 const path = require("path")
 const cors = require("cors");
 const authRoutes = require("./routes/userroutes")
 const mongoose = require("mongoose");
 const session = require("express-session")
-const bodyparser = require("body-parser")
+const bodyparser = require("body-parser");
+const { signup } = require("./controller/usercontroller");
 // const User = require('./model/usermodel'); // Adjust the path to your model file
 const router = express.Router();
 const port = process.env.PORT||4000;
@@ -103,6 +106,41 @@ app.get('/404',(req,res)=>{
 });
 app.get('/form',(req,res)=>{
     res.render('form')
+});
+
+
+
+app.get('/login', (req, res) => {
+    res.render('admin/html/adminsignin'); // Render investment.ejs
+});
+
+app.get('/signup', (req, res) => {
+    res.render('404'); // Render investment.ejs
+});
+
+app.get('/api/auth/admin/signup', (req, res) => {
+    res.render('admin/html/adminsignin'); // Render investment.ejs
+});
+
+app.get('/api/auth/admin/login', (req, res) => {
+    res.render('admin/html/adminsignin'); // Render investment.ejs
+});
+
+
+app.get("/users/user", async (req, res) => {
+    try {
+        // Check if session exists
+        if (!req.session.user) {
+            return res.redirect("/login"); // Redirect to login page
+        }
+
+        // Fetch user data
+        const signup = await Just.find(); 
+        res.render("users/user", { signup });
+    } catch (error) {
+        console.error("Error fetching pictures:", error);
+        res.render("err0r", { Pic: [] });
+    }
 });
 
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickMed</title>
+    <link rel="icon" href="/images/quickmedlogo.PNG">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/adminsignin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Add this CSS to style the preloader */
+     .preloader {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(255, 255, 255, 0.8);
+         display: none; /* Hidden by default */
+         justify-content: center;
+         align-items: center;
+         z-index: 9999;
+     }
+     
+     .spinner {
+         border: 4px solid rgba(0, 0, 0, 0.1);
+         border-left: 4px solid #3498db;
+         border-radius: 50%;
+         width: 40px;
+         height: 40px;
+         animation: spin 1s linear infinite;
+     }
+     
+     @keyframes spin {
+         0% { transform: rotate(0deg); }
+         100% { transform: rotate(360deg); }
+     }
+     
+         </style>
+</head>
+<body>
+
+
+    <!-- start NavBar -->
+   
+    <!-- 08062812376 -->
+<!-- end navbar -->
+
+
+
+<div class="container">
+    <h1 id="message">Login</h1>
+    <form  action="http://localhost:4000/api/auth/admin/login" method="post"> 
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        
+        <button type="submit">Sign In</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
+
+</body>
+</html>

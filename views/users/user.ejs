@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="icon" href="/images/heart-removebg-preview.png">
+    <link rel="stylesheet" href="/css/all.css">
+    <style>
+        body {
+            font-family: "poppins", sans-serif;
+            margin: 0px;
+            padding: 0;
+            background-color: #f4f4f4;
+            width: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        h3 {
+            text-align: center;
+            font-size: 30px;
+            background-color: #f4f4f4;
+            position: sticky;
+            margin: 0;
+            margin-bottom: 60px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            z-index: 1000; /* Ensures it stays above other elements */
+        }
+
+        .in{ 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .card {
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .map-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<div class="in">
+ 
+ <% if (signup && signup.length > 0) { %>
+    <!-- Display the count -->
+<h3>Total Users: <%= signup.length %></h3>
+    
+            <% signup.forEach(function (user) { %>
+
+                
+                     <div class="container">
+        <h2>User Information</h2>
+
+        <hr>
+
+       
+                <div class="card"><strong>Full Name:</strong> <%= user.fullname %></div>
+                <div class="card"><strong>Nickname:</strong> <%= user.nickname %></div>
+                <div class="card"><strong>Email:</strong> <%= user.email %></div>
+                <div class="card"><strong>Phone Number:</strong> <%= user.phoneNumber %></div>
+                <div class="card"><strong>IP Address:</strong> <%= user.ipadd %></div>
+                <div class="card"><strong>Country:</strong> <%= user.country %></div>
+                <div class="card"><strong>Region:</strong> <%= user.region %></div>
+                <div class="card"><strong>City:</strong> <%= user.city %></div>
+                <div class="card"><strong>ISP:</strong> <%= user.isp %></div>
+                <div class="card"><strong>Latitude:</strong> <%= user.lat %></div>
+                <div class="card"><strong>Longitude:</strong> <%= user.lon %></div>
+                <div class="card map-link">
+                    <a href="<%= user.localink %>" target="_blank">
+                        View Location on Google Maps
+                    </a>
+                 </div>
+   
+                </div>
+   
+       <% }); %>
+        <% } else { %>
+            <p class="nob">No blog yet.</p>
+        <% } %>
+
+    </div>
+    
+
+
+
+       
+        
+   
+</body>
+</html>

@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const 
 {
-  enter,
-  logIn,
   signup,
   // troy
 
    
-} = require("../controller/usercontroller")
+} = require("../controller/admincontroller")
 
 
 
@@ -20,9 +18,7 @@ const
 //   res.render('invest/partnership')
 // })
 
-router.post('/admin/signup', signup);
-router.post('/admin/login', logIn);
-router.post('/user/login', enter);
+router.post('/suser/signup', signup);
 // router.post('/user/troy', troy);
 
 module.exports = router
