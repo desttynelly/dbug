@@ -119,10 +119,22 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/api/auth/admin/signup', (req, res) => {
+
+     // Check if session exists
+     if (!req.session.user) {
+        return res.redirect("/login"); // Redirect to login page
+    }
+    
     res.render('admin/html/adminsignin'); // Render investment.ejs
 });
 
 app.get('/api/auth/admin/login', (req, res) => {
+
+     // Check if session exists
+     if (!req.session.user) {
+        return res.redirect("/login"); // Redirect to login page
+    }
+
     res.render('admin/html/adminsignin'); // Render investment.ejs
 });
 
